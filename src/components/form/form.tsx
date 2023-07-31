@@ -29,7 +29,12 @@ const ReactForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className="mx-6 max-w-[30rem]">
+      <h2>Hook Form</h2>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="mx-6 max-w-[30rem]"
+        noValidate
+      >
         <div className="my-2 flex flex-col gap-1 [&>input]:rounded [&>input]:bg-slate-800 [&>input]:p-2">
           <label htmlFor="username"> USER NAME </label>
           <input
