@@ -125,12 +125,14 @@ const ZodForm = () => {
 
   return (
     <div className="m-4 mx-auto max-w-[30rem] bg-gray-900 p-6">
-      <h2 className=" text-xl font-bold uppercase">Hook Form + Zod</h2>
+      <h2 className=" text-xl font-bold uppercase text-blue-500">
+        Hook Form + Zod
+      </h2>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="my-2 flex flex-col gap-1 [&>input]:rounded [&>input]:bg-slate-800 [&>input]:p-2">
           <label htmlFor="username"> USER NAME </label>
           <input type="text" id="username" {...register("username")} />
-          <p className="text-red-800">{errors.username?.message}</p>
+          <p className="text-red-500">{errors.username?.message}</p>
         </div>
 
         {/* email */}
@@ -158,7 +160,7 @@ const ZodForm = () => {
               },
             })}
           />
-          <p className="text-red-800">{errors.email?.message}</p>
+          <p className="text-red-500">{errors.email?.message}</p>
         </div>
 
         {/* Phone Number */}
@@ -171,7 +173,7 @@ const ZodForm = () => {
               className="my-2 flex  flex-col gap-1 [&>input]:rounded [&>input]:bg-slate-800 [&>input]:p-2"
             >
               <input type="tel" {...register(`phone.${index}.number`)} />
-              <p className="text-red-800">
+              <p className="text-red-500">
                 {errors.phone?.[index]?.number?.message}
               </p>
 
@@ -205,7 +207,7 @@ const ZodForm = () => {
         <div className="my-2 flex  flex-col gap-1 [&>input]:rounded [&>input]:bg-slate-800 [&>input]:p-2">
           <label htmlFor="age"> AGE </label>
           <input type="number" id="age" {...register("age")} />
-          <p className="text-red-800">{errors.age?.message}</p>
+          <p className="text-red-500">{errors.age?.message}</p>
         </div>
 
         {/* DOB */}
@@ -213,7 +215,7 @@ const ZodForm = () => {
         <div className="my-2 flex  flex-col gap-1 [&>input]:rounded [&>input]:bg-slate-800 [&>input]:p-2">
           <label htmlFor="dob"> DOG </label>
           <input type="date" id="dob" {...register("dob")} />
-          <p className="text-red-800">{errors.dob?.message}</p>
+          <p className="text-red-500">{errors.dob?.message}</p>
         </div>
 
         {/* address */}
@@ -221,7 +223,7 @@ const ZodForm = () => {
         <div className="my-2 flex  flex-col gap-1 [&>input]:rounded [&>input]:bg-slate-800 [&>input]:p-2">
           <label htmlFor="address-line1"> ADDRESS 1 </label>
           <input type="text" id="address" {...register("address.line1")} />
-          <p className="text-red-800">{errors.address?.line1?.message}</p>
+          <p className="text-red-500">{errors.address?.line1?.message}</p>
         </div>
 
         <div className="my-2 flex  flex-col gap-1 [&>input]:rounded [&>input]:bg-slate-800 [&>input]:p-2">
@@ -231,7 +233,7 @@ const ZodForm = () => {
             id="address-line2"
             {...register("address.line2")}
           />
-          <p className="text-red-800">{errors.address?.line2?.message}</p>
+          <p className="text-red-500">{errors.address?.line2?.message}</p>
         </div>
 
         <div className="my-2 flex  flex-col gap-1 [&>input]:rounded [&>input]:bg-slate-800 [&>input]:p-2 [&>select]:bg-slate-800 ">
@@ -250,7 +252,7 @@ const ZodForm = () => {
         <div className="flex items-center justify-between gap-2">
           <button
             type="submit"
-            className=" mt-6 flex rounded bg-slate-200 p-2 text-sm font-bold text-slate-900"
+            className=" mt-6 flex rounded bg-blue-500 p-2 text-sm font-bold text-slate-900"
           >
             Submit
           </button>
