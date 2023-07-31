@@ -71,28 +71,62 @@ const ZodForm = () => {
     resolver: zodResolver(schema),
   });
 
-  const { register, handleSubmit, control, formState } = form;
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState,
+    watch,
+    getValues,
+    setValue,
+    reset,
+    trigger,
+  } = form;
+
+  const {
+    errors,
+    isDirty,
+    touchedFields,
+    dirtyFields,
+    isValid,
+    isSubmitting,
+    isSubmitted,
+    isSubmitSuccessful,
+    submitCount,
+  } = formState;
 
   const { fields, append, remove } = useFieldArray({
     name: "phone",
     control,
   });
-  const { errors, isSubmitSuccessful } = formState;
 
   console.log({ errors });
+
+  const handleGetValues = () => {
+    console.log("Get values", getValues("username"));
+  };
+
+  const handleReset = () => {
+    reset();
+  };
+
+  const handleSetValue = () => {
+    // this will reset username
+    setValue("username", "", {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
+  };
 
   const onSubmit: SubmitHandler<TFormInput> = (data) => {
     console.log(data);
   };
 
   return (
-    <>
-      <h2 className="mx-6 text-xl font-bold uppercase">Hook Form + Zod</h2>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="mx-6 max-w-[30rem]"
-        noValidate
-      >
+    <div className="m-4 mx-auto max-w-[30rem] bg-gray-900 p-6">
+      <h2 className=" text-xl font-bold uppercase">Hook Form + Zod</h2>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="my-2 flex flex-col gap-1 [&>input]:rounded [&>input]:bg-slate-800 [&>input]:p-2">
           <label htmlFor="username"> USER NAME </label>
           <input type="text" id="username" {...register("username")} />
@@ -213,18 +247,28 @@ const ZodForm = () => {
           </select>
         </div>
 
-        <button
-          type="submit"
-          className=" mt-6 flex rounded bg-slate-200 p-2 text-sm font-bold text-slate-900"
-        >
-          Submit
-        </button>
+        <div className="flex items-center justify-between gap-2">
+          <button
+            type="submit"
+            className=" mt-6 flex rounded bg-slate-200 p-2 text-sm font-bold text-slate-900"
+          >
+            Submit
+          </button>
+
+          <button
+            className=" text mt-6 flex rounded bg-red-400 p-2 text-sm font-bold text-slate-900"
+            onClick={handleReset}
+          >
+            Reset Form
+          </button>
+        </div>
+
         {isSubmitSuccessful && (
           <p className="mt-2 text-green-600">Form submitted</p>
         )}
       </form>
       {/* <DevTool control={control} /> */}
-    </>
+    </div>
   );
 };
 
